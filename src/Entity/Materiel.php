@@ -25,7 +25,7 @@ class Materiel
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\PositiveOrZero
+     * @Assert\PositiveOrZero(message="Le prix doit être positif ou nul")
      */
     private $Prix;
 
