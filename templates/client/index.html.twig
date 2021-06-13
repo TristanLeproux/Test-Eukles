@@ -22,7 +22,7 @@
 					<td>{{ client.Prenom }}</td>
 					<td>{{ client.Nom }}</td>
 					<td>
-						<a href="{{ path('client_show', {'id': client.id}) }}">Voir liste matériel</a>
+						<a class="btn btn-primary" href="{{ path('client_show', {'id': client.id}) }}" role="button">Voir liste matériel</a>
 					</td>
 				</tr>
 			{% else %}
@@ -32,6 +32,5 @@
 			{% endfor %}
 		</tbody>
 	</table>
-
-	<a href="{{ path('client_new') }}">Créer un nouveau client</a>
+	<a class="btn btn-primary" href="{{ path('client_new') }}" role="button">Créer un nouveau client</a>
 {% endblock %}
