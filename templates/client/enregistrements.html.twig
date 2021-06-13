@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Enregistrements client
+{% endblock %}
+
+{% block body %}
+	<h1>Clients ayant + de 30 matériels et ayant pour + de 30 000 euros de matériel</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Prenom</th>
+				<th>Nom</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for client in clients %}
+				{% set som = 0 %}
+				{% for materiel in client.materiels %}
+					{% set som = som + materiel.prix %}
+				{% endfor %}
+				{% if som > 30000 and client.materiels|length > 30 %}
+					<tr>
+						<td>{{ client.Prenom }}</td>
+						<td>{{ client.Nom }}</td>
+					</tr>
+				{% endif %}
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</tbody>
+</table>{% endblock %}

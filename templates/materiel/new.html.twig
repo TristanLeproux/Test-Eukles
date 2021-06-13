@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Matériel
+{% endblock %}
+
+
+{% block body %}
+	<h1>Créer et associer un nouveau matériel</h1>
+
+	{{ include('materiel/_form.html.twig') }}
+
+	<a href="{{ path('client_index') }}">Retour à la liste des clients</a>
+{% endblock %}

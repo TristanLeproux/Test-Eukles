@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Totaux vendus
+{% endblock %}
+
+{% block body %}
+	<h1>Totaux vendus</h1>
+	{% set max = 0 %}
+	{% set prenom = '' %}
+	{% set nom = '' %}
+	{% for client in clients %}
+		{% set som = 0 %}
+		{% for materiel in client.materiels %}
+			{% set som = som + materiel.prix %}
+		{% endfor %}
+		{% if som > max %}
+			{% set max = som %}
+			{% set prenom = client.prenom %}
+			{% set nom = client.nom %}
+		{% endif %}
+	{% endfor %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Prenom</th>
+				<th>Nom</th>
+				<th>Totaux vendus (en Euro)</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for client in clients %}
+				{% set som = 0 %}
+				{% for materiel in client.materiels %}
+					{% set som = som + materiel.prix %}
+				{% endfor %}
+				<tr>
+					<td>{{ client.Prenom }}</td>
+					<td>{{ client.Nom }}</td>
+					<td>
+						{{ som }}
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<h2>Le client le plus rentable est
+		{{ prenom }}
+		{{ nom }}
+		avec un total vendu de
+		{{ max }}
+		euros
+	</h2>
+
+{% endblock %}
